@@ -1,10 +1,48 @@
-    let numero = parseInt(prompt("Ingrese el numero"));
-    
-    for(let index = 1; index <= 100; index++){
-    
-        let resultado = numero + index;
-    
-        let mensaje = `${numero} + ${index} = ${resultado}`;
-    
-        alert(mensaje);
+/* ------ CONVERSOR DE DIVISAS ---------*/ 
+
+let saludo = prompt ("Bienvenido, desea realizar alguna operación?")
+
+
+while (saludo != "si" && saludo != "no"){
+    alert ("Por favor ingresa si o no")
+    saludo = prompt ("Bienvenido, desea realizar alguna operación?")
 }
+
+if (saludo == "si"){
+    alert ("Gracias por elegirnos, a continuación podrá comenzar a operar")
+    
+}else if (saludo == "no"){
+    alert ("Gracias por responder, lo esperamos la próxima!")
+}
+
+while (saludo != "no"){
+    let tipoMoneda = prompt("Ingresar tipo de moneda a operar (ars, real, euro)");
+    let cotizacion = parseInt(prompt("Ingrese la cantidad que quiere convertir"));
+
+    if (tipoMoneda == "ars" || tipoMoneda == "real" || tipoMoneda == "euro"){
+        switch(tipoMoneda){
+            case "ars":
+                let resultadoArs = cotizacion / 280;
+                alert("Recibirás USD " + resultadoArs);
+                break;
+            case "real":
+                let resultadoReal = cotizacion / 280;
+                alert("Recibirás USD " + resultadoReal);
+                break;
+            case "euro":
+                let resultadoEuro = cotizacion / 280;
+                alert("Recibirás USD " + resultadoEuro);
+                break;
+        }
+    }else if (tipoMoneda != "ars" || tipoMoneda != "real" || tipoMoneda != "euro"){
+        alert("Ingreso una moneda inválida");
+        saludo(prompt("Vuelva a ingresar la moneda"));
+        break;
+    }
+    saludo = prompt ("¿Desea seguír operando?")
+    while (saludo ==="no"){
+        alert ("Gracias por operar con nosotros, hasta la próxima!")
+        break;
+    }
+}
+        
