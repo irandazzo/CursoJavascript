@@ -1,5 +1,4 @@
 /* ------ CONVERSOR DE DIVISAS ---------*/ 
-
 let saludo = prompt ("Bienvenido, desea realizar alguna operación?")
 
 
@@ -17,6 +16,10 @@ if (saludo == "si"){
 
 while (saludo != "no"){
     let tipoMoneda = prompt("Ingresar tipo de moneda a operar (ars, real, euro)");
+    while (tipoMoneda != "ars" && tipoMoneda != "real" && tipoMoneda != "euro"){
+      alert ("Por favor Ingresar tipo de moneda a operar (ars, real, euro)")
+      tipoMoneda = prompt("Ingresar tipo de moneda a operar (ars, real, euro)");
+  }
     let cotizacion = parseInt(prompt("Ingrese la cantidad que quiere convertir"));
 
     if (tipoMoneda == "ars" || tipoMoneda == "real" || tipoMoneda == "euro"){
@@ -34,10 +37,6 @@ while (saludo != "no"){
                 alert("Recibirás USD " + resultadoEuro);
                 break;
         }
-    }else if (tipoMoneda != "ars" || tipoMoneda != "real" || tipoMoneda != "euro"){
-        alert("Ingreso una moneda inválida");
-        saludo(prompt("Vuelva a ingresar la moneda"));
-        break;
     }
     saludo = prompt ("¿Desea seguír operando?")
     while (saludo ==="no"){
@@ -45,4 +44,5 @@ while (saludo != "no"){
         break;
     }
 }
-        
+
+
