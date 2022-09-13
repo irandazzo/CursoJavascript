@@ -25,15 +25,15 @@ while (saludo != "no"){
     if (tipoMoneda == "ars" || tipoMoneda == "real" || tipoMoneda == "euro"){
         switch(tipoMoneda){
             case "ars":
-                let resultadoArs = cotizacion / 280;
+                let resultadoArs = cotizacion / 142.58;
                 alert("Recibirás USD " + resultadoArs);
                 break;
             case "real":
-                let resultadoReal = cotizacion / 280;
+                let resultadoReal = cotizacion / 5.19;
                 alert("Recibirás USD " + resultadoReal);
                 break;
             case "euro":
-                let resultadoEuro = cotizacion / 280;
+                let resultadoEuro = cotizacion / 1.5;
                 alert("Recibirás USD " + resultadoEuro);
                 break;
         }
