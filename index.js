@@ -17,9 +17,9 @@ if (saludo == "si"){
 while (saludo != "no"){
     let tipoMoneda = prompt("Ingresar tipo de moneda a operar (ars, real, euro)");
     while (tipoMoneda != "ars" && tipoMoneda != "real" && tipoMoneda != "euro"){
-      alert ("Por favor Ingresar tipo de moneda a operar (ars, real, euro)")
-      tipoMoneda = prompt("Ingresar tipo de moneda a operar (ars, real, euro)");
-  }
+    alert ("Por favor Ingresar tipo de moneda a operar (ars, real, euro)")
+    tipoMoneda = prompt("Ingresar tipo de moneda a operar (ars, real, euro)");
+}
     let cotizacion = parseInt(prompt("Ingrese la cantidad que quiere convertir"));
 
     if (tipoMoneda == "ars" || tipoMoneda == "real" || tipoMoneda == "euro"){
