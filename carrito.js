@@ -83,7 +83,7 @@ while (seleccion != "no"){
     seleccion = prompt ("¿Desea seguir comprando?")
 
     while (seleccion === "no"){
-        alert ("Gracias por su compra, ¡lo esperamos pronto!")
+        alert ("Gracias por elegirnos, éste es el resumen de su compra:")
         carrito.forEach(carritoFinal =>{
             alert(`Producto: ${carritoFinal.producto}, Unidades: ${carritoFinal.unidades}, Precio: $ ${carritoFinal.precio}
                 , Total a pagar por producto: $ ${carritoFinal.unidades * carritoFinal.precio}`)
