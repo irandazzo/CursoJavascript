@@ -85,9 +85,12 @@ while (seleccion != "no"){
     while (seleccion === "no"){
         alert ("Gracias por elegirnos, éste es el resumen de su compra:")
         carrito.forEach(carritoFinal =>{
-            alert(`Producto: ${carritoFinal.producto}, Unidades: ${carritoFinal.unidades}, Precio: $ ${carritoFinal.precio}
-                , Total a pagar por producto: $ ${carritoFinal.unidades * carritoFinal.precio}`)
+            alert(`Producto: ${carritoFinal.producto},Unidades: ${carritoFinal.unidades},
+            Precio: $ ${carritoFinal.precio}
+            , Subtotal Producto: $ ${carritoFinal.unidades * carritoFinal.precio}`)
         })
         break;
-    }
+    }   
 }
+const total = carrito.reduce((total, producto) => total + producto.precio * producto.unidades,0)
+alert (`El total a pagar por su compra es: $ ${total}`);
