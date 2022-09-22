@@ -6,7 +6,7 @@
 
 .container{
     padding: 20px;
-    color: blue;
+    color: green;
     font-size: 20px;
 }
 .cardcontent{
@@ -23,6 +23,7 @@
     display: flex;
     justify-content: center;
 }
+
 .card-img-top{
     display: flex;
     justify-content: center;
@@ -31,5 +32,18 @@
     
 }
 .btn-primary{
-    background-color: blue;
+    background-color: rgb(3, 85, 3);
+    justify-content: center;
+    border: none;
+}
+.btn-primary:hover{
+    background-color: red;
+}
+
+.navFooter{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: antiquewhite;
+    margin: auto;
 }
