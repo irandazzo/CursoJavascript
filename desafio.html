@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nuestros Productos</title>
+    <script src="https://kit.fontawesome.com/0994120167.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/desafio.css">
 </head>
@@ -21,7 +22,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand" href="../index.html">
-                    <img src="../multimedia/logoideasparasoñar3.png" width="100" height="100" alt="logo">
+                    <img src="./multimedia/logoideasparasoñar3.png" width="100" height="100" alt="logo">
                 </a>
                 <div class="collapse navbar-collapse" id="opciones">
                     <ul class="navbar-nav">
@@ -39,14 +40,11 @@
                         </li>
                     </ul>
                 </div>
-                <div class="input-wrapper">
-                    <input type="search" class="input" placeholder="Buscar">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" class="input-icon" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd" />
-                    </svg>
+                <div>
+                <form action="" method="post" target="_blank">
+                    <input type="search" name="busqueda" placeholder="Buscar">
+                    <button class="buscar"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                </form>
                 </div>
                 <div>
                     <i class="fa-solid fa-cart-shopping"></i>
@@ -54,11 +52,13 @@
             </div>
         </nav>
     </header>
-    <div class="aca va la clase para darle estilo a las cards">
-    <div id="div">
+
+    <h1 class="titulo">Nuestros Productos</h1>
+    
+    <div id="div" class="card-producto">
         
     </div>
-</div>
+
     <footer class="footerGrid">
         <div class="footer">
             <div>
@@ -108,11 +108,11 @@
                     <ul class="menuRedes">
                         <li>
                             <a href="www.facebook.com/ideasparasoniar">
-                                <img src="../multimedia/logofacebook.png" alt="Facebook" width="30px"></a>
+                                <img src="./multimedia/logofacebook.png" alt="Facebook" width="30px"></a>
                             <a href="www.instagram.com/ideasparasoniar">
-                                <img src="../multimedia/logoinstagram.png" alt="Instagram" width="30px"></a>
+                                <img src="./multimedia/logoinstagram.png" alt="Instagram" width="30px"></a>
                             <a href="https://api.whatsapp.com/send/?phone=5491157983969&text&app_absent=0">
-                                <img src="../multimedia/logowhatsapp.png" alt="whatsapp" width="30px"></a>
+                                <img src="./multimedia/logowhatsapp.png" alt="whatsapp" width="30px"></a>
                         </li>
                     </ul>
                 </div>
