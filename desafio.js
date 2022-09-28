@@ -1,5 +1,7 @@
 const div = document.getElementById("div")
 
+
+
 let stockProductos = [
     {id: 1, nombre: "Conjunto Sublime", tipo: "colchon", cantidad: 1, desc: "Conjunto Sublime", medida: "1,40 * 1,90", precio: 96199, img: `./multimedia/conjuntosublime.png`},
     {id: 2, nombre: "Conjunto Exclusive", tipo: "colchon", cantidad: 1, desc: "Conjunto Exclusive", medida: "1,40 * 1,90", precio: 82699, img: `./multimedia/conjuntoexclusive.png`},
@@ -15,7 +17,7 @@ let stockProductos = [
 stockProductos.forEach(producto =>{
     let productoRenderizado = document.createElement("div") 
     productoRenderizado.innerHTML = `
-    <div class="card" style="width: 18rem;">
+    <div id="card" class="card" style="width: 18rem">
         <img src="${producto.img}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${producto.nombre}</h5>

@@ -11,7 +11,18 @@
 .precio{
     color: red;
 } */
+/* --------- PRODUCTOS ------*/
+.card{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
 
+
+
+
+/* ------------ HEADER -----------*/
 .header h1{
     display: flex;
     justify-content: left;
