@@ -1,6 +1,8 @@
 const div = document.getElementById("div")
 const boton = document.getElementById("boton")
 const inputAfter = document.getElementById("inputAfter")
+const botonInput = document.getElementById("botonInput")
+const formulario = document.getElementById ("formulario")
 
 let producto = [
     {id: 1, nombre: "Conjunto Sublime", tipo: "colchon", promo: "15% OFF", rating: "★★★★☆", cantidad: 1, descr: "Conjunto Sublime", medida: "1,40 * 1,90", precio: 96.199, img: `./multimedia/conjuntosublime.png`},
@@ -15,6 +17,8 @@ let producto = [
 ]
 
 let carrito = []
+let emails = []
+
 
 producto.forEach(producto =>{
     let productoRenderizado = document.createElement("div")
@@ -50,6 +54,33 @@ comprarProducto = (producto) => {
         
     })
 }
+const buscarProducto = (string) => {
+    console.log(string)
+    let productoBuscado = producto.find (producto => producto.nombre.includes(string))
+    console.log(productoBuscado);
+    inputAfter.value = ''
 }
 
+
+}
+
+const guardarEmail = (e) =>{
+    e.preventDefault()
+    let direccion = e.target.children[0].value;
+    let mensaje = e.target.children[1].value
+    emails.push({
+        direccion: direccion,
+        mensaje: mensaje
+    })
+    console.log(emails);
+}
+
+formulario.addEventListener("submit", (e) => guardarEmail (e))
+
 boton.addEventListener("click", () => console.log(carrito))
+
+
+botonInput.addEventListener("click", () => console.log((inputAfter.value)))
+
+// BUSCADOR INTERACTIVO
+// inputAfter.addEventListener("input", () => console.log((inputAfter.value)))
