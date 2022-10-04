@@ -27,21 +27,19 @@ stockProductos.forEach((producto) => {
     const div = document.createElement("div")
     div.classList.add ("producto")
     div.innerHTML = `
-    <div id="card" class="card productos">
-        <a href="#">
-            <div class="img-container">
-                <img src=${producto.img} alt="">
-                <span   span class="promo">${producto.promo}</span>
-            </div>
-        </a>
-            <div class="info-container">
-                <h3>${producto.nombre}</h3>
-                <p>${producto.desc}</p>
-                <strong class="precioProducto">Precio: $${producto.precio}</strong>
-                <span class="rating">${producto.rating}</span>
-                <button id="agregar${producto.id}" class="boton-agregar">Agregar al carrito</button>
-            </div>
+    <div class="card" style="width: 30rem;">
+        <img src="${producto.img}" class="card-img-top" alt="...">
+        <span   span class="promo">${producto.promo}</span>
+        <div class="card-body">
+        <h5 class="card-title">${producto.nombre}</h5>
+        <p class="card-text">${producto.desc}</p>
+        <strong class="precioProducto">Precio: $${producto.precio}</strong>
+        <span class="rating">${producto.rating}</span>
+        <button id="agregar${producto.id}" class="boton-agregar">Agregar al carrito</button>
+    </div>
+</div>
     `
+
     contenedorProductos.appendChild(div)
 
     const boton = document.getElementById(`agregar${producto.id}`)
