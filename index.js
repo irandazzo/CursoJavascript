@@ -6,7 +6,7 @@ let contadorCarrito = document.getElementById("contador-carrito");
 let precioTotal = document.getElementById("precio-total");
 let carrito = [];
 
-const productosIndex = [
+const stockProductos = [
     {id: 1, nombre: "Conjunto Sublime", tipo: "colchon", promo: "15% OFF", rating: "★★★★☆", cantidad: 1, desc: "Conjunto Sublime", medida: "1,40 * 1,90", precio: 96.199, img: `./multimedia/conjuntosublime.png`},
     {id: 2, nombre: "Conjunto Exclusive", tipo: "colchon", promo: "18% OFF", rating: "★★★☆☆", cantidad: 1, desc: "Conjunto Exclusive", medida: "1,40 * 1,90", precio: 82.699, img: `./multimedia/conjuntoexclusive.png`},
     {id: 3, nombre: "Conjunto Támesis", tipo: "colchon", promo: "25% OFF", rating: "★★☆☆☆", cantidad: 1, desc: "Conjunto Támesis", medida: "1,40 * 1,90", precio: 128.399, img: `./multimedia/conjuntotamesis.png`},
@@ -30,16 +30,15 @@ botonVaciar.addEventListener("click", () =>{
     carrito = JSON.parse(localStorage.getItem("carrito"));
     localStorage.clear("carrito");
 });
-productosIndex.forEach(item => {
+stockProductos.forEach(item => {
     let productos = document.createElement("div");
     productos.className = "container-card col-xs-12 col-md-6 col-lg-4 my-3";
     productos.innerHTML = `
-        <img src="${item.img}" alt="Avatar" class="image img__index"
-            style="width:100%">
+        <img src="${item.img}" alt="" class="image img-index" style="width:100%">
         <h4 class="card-titulo text-center">${item.nombre}</h4>
         <h5 class="card-titulo">$${item.precio}</h5>
         <span class="rating">${item.rating}</span>
-        <div class="middle">
+        <div>
             <button id="${item.id}" class="btn-comprar">Comprar</button>
         </div>
     `
@@ -59,7 +58,7 @@ const agregarAlCarrito = (prodId) => {
             }
         })
     }else{
-        let item = productosIndex.find((prod) => prod.id === prodId);
+        let item = stockProductos.find((prod) => prod.id === prodId);
         carrito.push({
             id: item.id,
             nombre: item.nombre,
