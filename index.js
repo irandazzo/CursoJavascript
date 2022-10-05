@@ -32,9 +32,9 @@ botonVaciar.addEventListener("click", () =>{
 });
 productosIndex.forEach(item => {
     let productos = document.createElement("div");
-    productos.className = "container-card col-xs-12 col-md-6 col-lg-4 my-3 transition";
+    productos.className = "container-card col-xs-12 col-md-6 col-lg-4 my-3";
     productos.innerHTML = `
-        <img src="${item.img}" alt="Avatar" class="image img-index"
+        <img src="${item.img}" alt="Avatar" class="image img__index"
             style="width:100%">
         <h4 class="card-titulo text-center">${item.nombre}</h4>
         <h5 class="card-titulo">$${item.precio}</h5>
@@ -81,7 +81,6 @@ const actualizarCarrito = () => {
         const div = document.createElement("div");
         div.className = "";
         div.innerHTML = `
-        <img src="${prod.img}" alt="">
         <p>${prod.nombre}</p>
         <p>$${prod.precio}</p>
         <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
@@ -90,6 +89,7 @@ const actualizarCarrito = () => {
         contenedorCarrito.append(div);
         localStorage.setItem("carrito", JSON.stringify(carrito));
     });
+
     contadorCarrito.innerText = carrito.length;
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.precio, 0);
 }
