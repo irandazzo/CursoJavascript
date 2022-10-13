@@ -29,6 +29,20 @@ botonVaciar.addEventListener("click", () =>{
     actualizarCarrito();
     carrito = JSON.parse(localStorage.getItem("carrito"));
     localStorage.clear("carrito");
+    Toastify({
+        text: "Carrito vaciado",
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right", 
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(to right, #D0312D, #D0312D)",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
 });
 stockProductos.forEach(item => {
     let productos = document.createElement("div");
@@ -39,7 +53,7 @@ stockProductos.forEach(item => {
         <h5 class="card-titulo">$${item.precio}</h5>
         <span class="rating">${item.rating}</span>
         <div>
-            <button id="${item.id}" class="btn-comprar">Comprar</button>
+            <button id="${item.id}" class="btn-comprar">Agregar al Carrito</button>
         </div>
     `
     contenedor.append(productos)
@@ -73,6 +87,7 @@ const eliminarDelCarrito = (prodId) => {
     const indice = carrito.indexOf(item);
     carrito.splice(indice, 1);
     actualizarCarrito();
+    
 }
 const actualizarCarrito = () => {
     contenedorCarrito.innerHTML = "";
@@ -87,9 +102,110 @@ const actualizarCarrito = () => {
         `
         contenedorCarrito.append(div);
         localStorage.setItem("carrito", JSON.stringify(carrito));
+        Toastify({
+            text: "Agregado al Carrito",
+            duration: 1000,
+            close: true,
+            gravity: "bottom",
+            position: "left",
+            stopOnFocus: true,
+            style: {
+              background: "linear-gradient(to right, #006f48, #006f48)",
+            },
+            onClick: function () { }
+          }).showToast();
     });
 
     contadorCarrito.innerText = carrito.length;
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.precio, 0);
+}
+
+
+document.getElementById("icon-menu").addEventListener("click", mostrar_menu);
+
+function mostrar_menu(){
+
+    document.getElementById("move-content").classList.toggle('move-container-all');
+    document.getElementById("show-menu").classList.toggle('show-lateral');
+}
+
+
+
+
+
+
+
+
+                            //Buscador de contenido
+
+
+//Ejecutando funciones
+document.getElementById("icon-search").addEventListener("click", mostrar_buscador);
+document.getElementById("cover-ctn-search").addEventListener("click", ocultar_buscador);
+
+//Declarando variables
+bars_search =       document.getElementById("ctn-bars-search");
+cover_ctn_search =  document.getElementById("cover-ctn-search");
+inputSearch =       document.getElementById("inputSearch");
+box_search =        document.getElementById("box-search");
+
+
+//Funcion para mostrar el buscador
+function mostrar_buscador(){
+
+    bars_search.style.top = "80px";
+    cover_ctn_search.style.display = "block";
+    inputSearch.focus();
+
+    if (inputSearch.value === ""){
+        box_search.style.display = "none";
+    }
+
+}
+
+//Funcion para ocultar el buscador
+function ocultar_buscador(){
+
+    bars_search.style.top = "-10px";
+    cover_ctn_search.style.display = "none";
+    inputSearch.value = "";
+    box_search.style.display = "none";
+
+}
+
+
+//Creando filtrado de busqueda
+
+document.getElementById("inputSearch").addEventListener("keyup", buscador_interno);
+
+function buscador_interno(){
+
+
+    filter = inputSearch.value.toUpperCase();
+    li = box_search.getElementsByTagName("li");
+
+    //Recorriendo elementos a filtrar mediante los "li"
+    for (i = 0; i < li.length; i++){
+
+        a = li[i].getElementsByTagName("a")[0];
+        textValue = a.textContent || a.innerText;
+
+        if(textValue.toUpperCase().indexOf(filter) > -1){
+
+            li[i].style.display = "";
+            box_search.style.display = "block";
+
+            if (inputSearch.value === ""){
+                box_search.style.display = "none";
+            }
+
+        }else{
+            li[i].style.display = "none";
+        }
+
+    }
+
+
+
 }
 
