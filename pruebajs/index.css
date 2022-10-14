@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  h1,h2,h3{
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Header */
+  header{
+    background-color: #006f48;
+  }
+  
+  /* Carrito y lupa */
+  .carrito, .lupa{
+    font-size: 1.5rem;
+  }
+  
+  .contenidoCarrito{
+    display: flex;
+    flex-direction: column;
+  }
+.titulo{
+    color: #006f48;
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
+}
+    /* Filtro */
+.tituloFiltro{
+    margin: 20px;
+    color: #006f48;
+}
+.form-select{
+    width: 25%;
+    margin: 20px;
+}
+
+.card-precio{
+    color: #006f48;
+}
+.card-title{
+    color: #006f48;
+}
+.btn-carrito{
+    border-color: #fff;
+}
+.btn-carrito:hover{
+    background-color: #fff;    
+    border-color: #fff;
+}
+.fa-cart-shopping{
+    color: #fff;
+    border-color: #fff;
+}
+.fa-cart-shopping:hover{
+    color: #006f48;
+}
+
+.btn-buscador{
+    border-color: #fff;
+}
+.btn-buscador:hover{
+    background-color: #fff;    
+    border-color: #fff;
+}
+.fa-magnifying-glass{
+    color: #fff;
+    border-color: #fff;
+}
+.fa-magnifying-glass:hover{
+    color: #006f48;
+}
+/* .productosConjuntos{
+    display: flex;
+    justify-content: center;
+} */
+  
+  
+  /* Footer */
+  footer{
+    background-color: #302f4e;
+  }
+  
+  
+/* Productos */
+  .imgConjuntos{
+    width: 250px;
+  }
+/* Botones */
+.btn-agregarCarrito{
+    background-color: #006f48;
+    border-color: #006f48;
+}
+.btn-agregarCarrito:hover{
+    background-color: #fff;
+    border-color: #006f48;
+    color: #006f48;
+    
+}
+.footer{
+    background-color: aqua;
+}
