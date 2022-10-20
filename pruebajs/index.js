@@ -7,45 +7,6 @@ const formBuscador = document.getElementById("formBuscador");
 const botonBuscador = document.getElementById("botonBuscador");
 const filtro = document.getElementById("filtro");
 
-
-    /* Creación de productos */
-/* class Conjunto {
-    constructor(id, modelo, precio, rating, imagen) {
-    this.id = id;
-    this.modelo = modelo;
-    this.precio = precio;
-    this.rating = rating;
-    this.imagen = imagen;
-    }
-} */
-
-
-/* let conjuntos = []; */
-
-/* const conjunto1 = new Conjunto(1, "Conjunto Sublime", 96199, "★★★★☆",  "./multimedia/conjuntosublime.jpg");
-const conjunto2 = new Conjunto(2, "Conjunto Exclusive", 82699, "★★★☆☆", "./multimedia/conjuntoexclusive.jpg");
-const conjunto3 = new Conjunto(3, "Conjunto Támesis", 128399, "★★☆☆☆", "./multimedia/conjuntotamesis.jpg");
-const conjunto4 = new Conjunto(4, "Conjunto Montreaux", 59999, "★★★★★", "./multimedia/conjuntomontreaux.jpg");
-const conjunto5 = new Conjunto(5, "Conjunto Sonno", 78999, "★★★☆☆", "./multimedia/conjuntosonno.jpg");
-const conjunto6 = new Conjunto(6, "Conjunto Regno", 101899, "★★★★☆", "./multimedia/conjuntoregno.jpg");
-const conjunto7 = new Conjunto(7, "Conjunto Nantes", 76599, "★★★★☆", "./multimedia/conjuntonantes.jpg");
-const conjunto8 = new Conjunto(8, "Conjunto Princess", 59899, "★★☆☆☆", "./multimedia/conjuntoprincess.jpg");
-const conjunto9 = new Conjunto(9, "Conjunto Doral", 120999, "★★★☆☆", "./multimedia/conjuntodoral.jpg");
- */
-
-/* conjuntos.push(conjunto1, conjunto2, conjunto3, conjunto4, conjunto5, conjunto6, conjunto7, conjunto8, conjunto9);
-    switch (filtro?.value) {
-        case "recientemente":
-        conjuntos.sort((a, b) => b.id - a.id);
-        break;
-        case "mayor":
-        conjuntos.sort((a, b) => b.precio - a.precio);
-        break;
-        case "menor":
-        conjuntos.sort((a, b) => a.precio - b.precio);
-        break;
-    }
- */
 /* Renderizar Productos */
 const renderizarProductos = async () =>{
   let results = await fetch("../conjuntos/conjuntos.json");
@@ -53,7 +14,7 @@ const renderizarProductos = async () =>{
 
 
   /* Filtro */
-/*   switch (filtro?.value) {
+  switch (filtro?.value) {
     case "recientemente":
     conjuntos.sort((a, b) => b.id - a.id);
     break;
@@ -63,7 +24,7 @@ const renderizarProductos = async () =>{
     case "menor":
     conjuntos.sort((a, b) => a.precio - b.precio);
     break;
-} */
+}
 
 conjuntos.forEach(item => {
   let article = document.createElement("article");
@@ -84,29 +45,6 @@ conjuntos.forEach(item => {
   botonAgregarACarrito?.addEventListener("click", () => agregarACarrito(item));
 })
 }
-
-/* const renderizarProductos = (prods) => {
-    prods.forEach(item => {
-        let article = document.createElement("article");
-        article.innerHTML = `
-            <div class="card text-center m-3" style="width: 18rem;">
-                <img src="${item.imagen}" class="imgConjuntos mt-3 mx-auto" alt="${item.modelo}">
-                <div class="card-body">
-                    <h5 class="card-title">${item.modelo}</h5>
-                    <h5 class="card-title">${item.rating}</h5>
-                    <h5 class="card-precio">$${item.precio}</h5>
-                    <button type="button" id="${"btnAgregarCarrito" + item.id}" class="btn btn-primary btn-agregarCarrito">Agregar al carrito</button>
-                </div>
-            </div>
-                `
-        productos?.append(article);
-        let botonAgregarACarrito = document.getElementById("btnAgregarCarrito" + item.id);
-        botonAgregarACarrito?.addEventListener("click", () => agregarACarrito(item));
-        
-    })
-}
- */
-
     /* Agregar al carrito */
 const agregarACarrito = producto => {
     let productoExiste = carritoStorage.find(item => item.id === producto.id);
@@ -130,7 +68,7 @@ const agregarACarrito = producto => {
     Swal.fire({
       position: 'center',
       icon: 'success',
-      title: 'Your work has been saved',
+      title: 'Agregado al Carrito',
       showConfirmButton: false,
       timer: 1500
     })
@@ -239,7 +177,9 @@ const agregarACarrito = producto => {
   }
   
   /* Ordenar Productos */
-  const ordenarProductos = (prods, orden) => {
+  const ordenarProductos =  async orden => {
+    let result = await fetch ("../conjuntos/conjuntos.json")
+    let prods = await result.json();
     switch (orden) {
       case "recientemente":
         prods.sort((a, b) => b.id - a.id);
@@ -252,7 +192,7 @@ const agregarACarrito = producto => {
         break;
     }
     productos.innerHTML = "";
-    renderizarProductos(prods);
+    renderizarProductos();
   }
   
   /* Sumar Item Carrito*/
@@ -286,13 +226,20 @@ const agregarACarrito = producto => {
     localStorage.setItem("carritoStorage",JSON.stringify(carritoStorage));
     renderizarCarrito();
     Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Eliminado correctamente',
+      showConfirmButton: false,
+      timer: 1500
+    })
+/*     Swal.fire({
         title: 'Sweet!',
         text: 'Modal with a custom image.',
-        imageUrl: 'https://unsplash.it/400/200',
+        imageUrl: '${item.imagen}',
         imageWidth: 400,
         imageHeight: 200,
         imageAlt: 'Custom image',
-      })
+      }) */
   }
 
   /* Acceso al localStorage */

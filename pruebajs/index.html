@@ -15,7 +15,7 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
     <!-- Animated  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- Toastify -->
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"> -->
 
@@ -24,6 +24,7 @@
 
     <title>Ideas para Soñar | Productos</title>
 </head>
+
 <body>
     <!-- Cabecera del sitio -->
     <header class="d-flex justify-content-between">
@@ -35,15 +36,15 @@
             <form class="d-flex" method="get" action="#">
                 <input id="formBuscador" class="form-control me-3" type="text" placeholder="Buscar productos...">
                 <button id="botonBuscador" type="button" class="btn btn-outline-primary btn-buscador">
-                   
+
                     <i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
             <!-- Botón Carrito -->
             <button id="botonCarrito" type="button"
-                class="btn btn-outline-primary btn-carrito position-relative align-self-center m-4" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                class="btn btn-outline-primary btn-carrito position-relative align-self-center m-4"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                 <i class="fa-solid fa-cart-shopping"></i>
-               
+
                 <span id="numeroCarrito"
                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
             </button>
@@ -56,7 +57,8 @@
                 <div id="contenidoCarrito" class="offcanvas-body contenidoCarrito"></div>
                 <div class="d-flex align-self-center mb-3 botonesCarrito">
                     <button id="botonPagar" type="button" class="btn btn-warning botonPagar">Iniciar Compra</button>
-                    <button id="botonVaciarCarrito" type="button" class="btn btn-warning botonVaciarCarrito">Vaciar Carrito</button>
+                    <button id="botonVaciarCarrito" type="button" class="btn btn-warning botonVaciarCarrito">Vaciar
+                        Carrito</button>
                 </div>
             </div>
         </div>
@@ -64,27 +66,30 @@
 
     <!-- Main -->
     <main>
-    <div>
-        <img src="./multimedia/bannerproductos.png" width="1350px" alt="">
-    </div>
-    <section>
-        <h1 class="titulo">Nuestros Productos</h1>
         <div>
-        <p class="fw-bold mt-3 tituloFiltro">Ordenar por:</p>
-            <select id="ordenador" class="form-select">
-                <option selected value="recientemente">Agregados recientemente</option>
-                <option value="mayor">Precio: mayor a menor</option>
-                <option value="menor">Precio: menor a mayor</option>
-            </select>
+            <img src="./multimedia/bannerproductos.png" width="1350px" alt="">
         </div>
-        <!-- Productos -->
-        <section id="productos" class="d-flex flex-wrap"></section>
-    </section>
-</main>
-    
+        <section>
+            <h1 class="titulo">Nuestros Productos</h1>
+            <div>
+                <p class="fw-bold mt-3 tituloFiltro">Ordenar por:</p>
+                <select id="ordenador" class="form-select">
+                    <option selected value="recientemente">Agregados recientemente</option>
+                    <option value="mayor">Precio: mayor a menor</option>
+                    <option value="menor">Precio: menor a mayor</option>
+                </select>
+                <div id="ctn-bars-search">
+                    <input type="text" id="inputSearch" placeholder="¿Qué deseas buscar?">
+                </div>
+            </div>
+            <!-- Productos -->
+            <section id="productos" class="d-flex flex-wrap"></section>
+        </section>
+    </main>
+
 
     <!-- Javascript -->
-    
+
     <!-- Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
