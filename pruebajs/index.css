@@ -2,26 +2,26 @@
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-  }
-  
-  h1,h2,h3{
+}
+
+h1,h2,h3{
     font-family: 'Poppins', sans-serif;
-  }
-  
+}
+
   /* Header */
-  header{
+header{
     background-color: #006f48;
-  }
-  
+}
+
   /* Carrito y lupa */
-  .carrito, .lupa{
+.carrito, .lupa{
     font-size: 1.5rem;
-  }
-  
-  .contenidoCarrito{
+}
+
+.contenidoCarrito{
     display: flex;
     flex-direction: column;
-  }
+}
 .titulo{
     color: #006f48;
     text-align: center;
@@ -77,18 +77,42 @@
     display: flex;
     justify-content: center;
 } */
-  
-  
+.botonVaciarCarrito{
+    background-color: red;
+    border-color: red;
+    color: #fff;
+    padding: 10px;
+}
+.botonVaciarCarrito:hover{
+    background-color: #fff;
+    border-color: red;
+    color: red;
+}
+.botonPagar{
+    background-color: #006f48;
+    border-color: #006f48;
+    color: #fff;
+}
+.botonPagar:hover{
+    background-color: #fff;
+    border-color: #006f48;
+    color: #006f48;
+}
+.botonesCarrito button{
+    padding: 10px;
+    margin: 5px;
+}
+
   /* Footer */
-  footer{
+footer{
     background-color: #302f4e;
-  }
-  
-  
+}
+
+
 /* Productos */
-  .imgConjuntos{
+.imgConjuntos{
     width: 250px;
-  }
+}
 /* Botones */
 .btn-agregarCarrito{
     background-color: #006f48;

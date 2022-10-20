@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "modelo": "Conjunto Sublime",
+        "precio": 96199,
+        "rating": "★★★★☆",
+        "imagen": "./multimedia/conjuntosublime.jpg"
+    },
+    {
+        "id": 2,
+        "modelo": "Conjunto Exclusive",
+        "precio": 82699,
+        "rating": "★★★☆☆",
+        "imagen": "./multimedia/conjuntoexclusive.jpg"
+    },
+    {
+        "id": 3,
+        "modelo": "Conjunto Támesis",
+        "precio": 128399,
+        "rating": "★★☆☆☆",
+        "imagen": "./multimedia/conjuntotamesis.jpg"
+    },
+    {
+        "id": 4,
+        "modelo": "Conjunto Montreaux",
+        "precio": 59999,
+        "rating": "★★★★★",
+        "imagen": "./multimedia/conjuntomontreaux.jpg"
+    },
+    {
+        "id": 5,
+        "modelo": "Conjunto Sonno",
+        "precio": 78999,
+        "rating": "★★★☆☆",
+        "imagen": "./multimedia/conjuntosonno.jpg"
+    },
+    {
+        "id": 6,
+        "modelo": "Conjunto Regno",
+        "precio": 101899,
+        "rating": "★★★★☆",
+        "imagen": "./multimedia/conjuntoregno.jpg"
+    },
+    {
+        "id": 7,
+        "modelo": "Conjunto Nantes",
+        "precio": 76599,
+        "rating": "★★★★☆",
+        "imagen": "./multimedia/conjuntonantes.jpg"
+    },
+    {
+        "id": 8,
+        "modelo": "Conjunto Princess",
+        "precio": 59899,
+        "rating": "★★☆☆☆",
+        "imagen": "./multimedia/conjuntoprincess.jpg"
+    },
+    {
+        "id": 9,
+        "modelo": "Conjunto Doral",
+        "precio": 120999,
+        "rating": "★★★☆☆",
+        "imagen": "./multimedia/conjuntodoral.jpg"
+    }
+]

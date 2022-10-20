@@ -6,10 +6,10 @@ const botonVaciarCarrito = document.getElementById("botonVaciarCarrito");
 const formBuscador = document.getElementById("formBuscador");
 const botonBuscador = document.getElementById("botonBuscador");
 const filtro = document.getElementById("filtro");
-const ultimosProductos = document.getElementById("ultimosProductos");
+
 
     /* Creación de productos */
-class Conjunto {
+/* class Conjunto {
     constructor(id, modelo, precio, rating, imagen) {
     this.id = id;
     this.modelo = modelo;
@@ -17,12 +17,12 @@ class Conjunto {
     this.rating = rating;
     this.imagen = imagen;
     }
-}
+} */
 
 
-let conjuntos = [];
+/* let conjuntos = []; */
 
-const conjunto1 = new Conjunto(1, "Conjunto Sublime", 96199, "★★★★☆",  "./multimedia/conjuntosublime.jpg");
+/* const conjunto1 = new Conjunto(1, "Conjunto Sublime", 96199, "★★★★☆",  "./multimedia/conjuntosublime.jpg");
 const conjunto2 = new Conjunto(2, "Conjunto Exclusive", 82699, "★★★☆☆", "./multimedia/conjuntoexclusive.jpg");
 const conjunto3 = new Conjunto(3, "Conjunto Támesis", 128399, "★★☆☆☆", "./multimedia/conjuntotamesis.jpg");
 const conjunto4 = new Conjunto(4, "Conjunto Montreaux", 59999, "★★★★★", "./multimedia/conjuntomontreaux.jpg");
@@ -31,9 +31,9 @@ const conjunto6 = new Conjunto(6, "Conjunto Regno", 101899, "★★★★☆", "
 const conjunto7 = new Conjunto(7, "Conjunto Nantes", 76599, "★★★★☆", "./multimedia/conjuntonantes.jpg");
 const conjunto8 = new Conjunto(8, "Conjunto Princess", 59899, "★★☆☆☆", "./multimedia/conjuntoprincess.jpg");
 const conjunto9 = new Conjunto(9, "Conjunto Doral", 120999, "★★★☆☆", "./multimedia/conjuntodoral.jpg");
+ */
 
-
-conjuntos.push(conjunto1, conjunto2, conjunto3, conjunto4, conjunto5, conjunto6, conjunto7, conjunto8, conjunto9);
+/* conjuntos.push(conjunto1, conjunto2, conjunto3, conjunto4, conjunto5, conjunto6, conjunto7, conjunto8, conjunto9);
     switch (filtro?.value) {
         case "recientemente":
         conjuntos.sort((a, b) => b.id - a.id);
@@ -45,9 +45,47 @@ conjuntos.push(conjunto1, conjunto2, conjunto3, conjunto4, conjunto5, conjunto6,
         conjuntos.sort((a, b) => a.precio - b.precio);
         break;
     }
-
+ */
 /* Renderizar Productos */
-const renderizarProductos = (prods) => {
+const renderizarProductos = async () =>{
+  let results = await fetch("../conjuntos/conjuntos.json");
+  let conjuntos = await results.json();
+
+
+  /* Filtro */
+/*   switch (filtro?.value) {
+    case "recientemente":
+    conjuntos.sort((a, b) => b.id - a.id);
+    break;
+    case "mayor":
+    conjuntos.sort((a, b) => b.precio - a.precio);
+    break;
+    case "menor":
+    conjuntos.sort((a, b) => a.precio - b.precio);
+    break;
+} */
+
+conjuntos.forEach(item => {
+  let article = document.createElement("article");
+  article.classList="mx-auto"
+  article.innerHTML = `
+  <div class="card text-center m-3" style="width: 18rem;">
+    <img src="${item.imagen}" class="imgConjuntos mt-3 mx-auto" alt="${item.modelo}">
+    <div class="card-body">
+        <h5 class="card-title">${item.modelo}</h5>
+        <h5 class="card-title">${item.rating}</h5>
+        <h5 class="card-precio">$${item.precio}</h5>
+        <button type="button" id="${"btnAgregarCarrito" + item.id}" class="btn btn-primary btn-agregarCarrito">Agregar al carrito</button>
+    </div>
+  </div>
+  `
+  productos?.append(article);
+  let botonAgregarACarrito = document.getElementById("btnAgregarCarrito" + item.id);
+  botonAgregarACarrito?.addEventListener("click", () => agregarACarrito(item));
+})
+}
+
+/* const renderizarProductos = (prods) => {
     prods.forEach(item => {
         let article = document.createElement("article");
         article.innerHTML = `
@@ -67,7 +105,7 @@ const renderizarProductos = (prods) => {
         
     })
 }
-
+ */
 
     /* Agregar al carrito */
 const agregarACarrito = producto => {
@@ -89,18 +127,13 @@ const agregarACarrito = producto => {
     localStorage.setItem("numeroCarritoStorage", JSON.stringify(parseInt(numeroCarrito.innerHTML) + 1));
     numeroCarrito.innerHTML = JSON.parse(localStorage.getItem("numeroCarritoStorage"));
     renderizarCarrito();
-/*     Toastify({
-      text: "Agregado al carrito",
-      duration: 2000,
-      close: true,
-      gravity: "bottom",
-      position: "left",
-      stopOnFocus: false,
-      style: {
-        background: "linear-gradient(to right, #00b09b, #96c93d)",
-      },
-      onClick: function () { }
-    }).showToast(); */
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Your work has been saved',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
   
   /* Renderizar Carrito */
@@ -261,30 +294,6 @@ const agregarACarrito = producto => {
         imageAlt: 'Custom image',
       })
   }
-  
-  /* Renderizar últimos productos */
-/*   const renderizarUltimosProductos = (prods) =>{
-    let ultProds = [];
-    for (let i = prods.length - 1; i > prods.length - 4; i--){
-      ultProds.push(prods[i]);
-    }
-    ultProds.forEach(item => {
-      let article = document.createElement("article");
-      article.innerHTML = `
-      <div class="card text-center m-3" style="width: 18rem;">
-        <img src="${item.imagen}" class="card-img-top imgConjuntos mt-3" alt="${item.marca} ${item.modelo}">
-        <div class="card-body">
-          <h5 class="card-title">${item.marca} ${item.modelo}</h5>
-          <h5>$${item.precio}</h5>
-          <button type="button" id="${"btnAgregarCarrito" + item.id}" class="btn btn-primary btn-agregarCarrito">Agregar al carrito</button>
-        </div>
-      </div>
-      `
-      ultimosProductos?.append(article);
-      let botonAgregarACarrito = document.getElementById("btnAgregarCarrito" + item.id);
-      botonAgregarACarrito?.addEventListener("click", () => agregarACarrito(item));
-    })
-  } */
 
   /* Acceso al localStorage */
 let numeroCarritoStorage = JSON.parse(localStorage.getItem("numeroCarritoStorage"));
@@ -300,8 +309,8 @@ if (parseInt(numeroCarrito.innerHTML) === 0) {
 }
 
 /* Renderizado de Productos */
-renderizarProductos(conjuntos);
-renderizarUltimosProductos(conjuntos);
+renderizarProductos();
+
 
 /* Evento vaciar carrito */
 botonVaciarCarrito.addEventListener("click", vaciarCarrito);
