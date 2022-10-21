@@ -3,9 +3,10 @@ const botonCarrito = document.getElementById("botonCarrito");
 const numeroCarrito = document.getElementById("numeroCarrito");
 const contenidoCarrito = document.getElementById("contenidoCarrito");
 const botonVaciarCarrito = document.getElementById("botonVaciarCarrito");
-const formBuscador = document.getElementById("formBuscador");
-const botonBuscador = document.getElementById("botonBuscador");
-const filtro = document.getElementById("filtro");
+/* const formBuscador = document.getElementById("formBuscador"); */
+/* const botonBuscador = document.getElementById("botonBuscador"); */
+const ordenador = document.getElementById("ordenador");
+const pagar = document.getElementById("botonPagar")
 
 /* Renderizar Productos */
 const renderizarProductos = async () =>{
@@ -14,14 +15,14 @@ const renderizarProductos = async () =>{
 
 
   /* Filtro */
-  switch (filtro?.value) {
-    case "recientemente":
+  switch (ordenador?.value) {
+    case "reciente":
     conjuntos.sort((a, b) => b.id - a.id);
     break;
-    case "mayor":
+    case "mayorMenor":
     conjuntos.sort((a, b) => b.precio - a.precio);
     break;
-    case "menor":
+    case "menorMayor":
     conjuntos.sort((a, b) => a.precio - b.precio);
     break;
 }
@@ -168,9 +169,9 @@ const agregarACarrito = producto => {
   /* Buscar Productos */
   const buscarProductos = (prod) => {
     if(window.location.pathname === "/index.html"){
-      window.location.href= "./PAGES/products.html";
+      window.location.href= "../conjuntos/conjuntos.json";
     }
-    let buscado = conjuntos.filter(conj => (`${conj.marca} ${conj.modelo}`).toLowerCase().includes(prod));
+    let buscado = conjuntos.filter(conj => (`${conj.modelo}`).toLowerCase().includes(prod));
     productos.innerHTML= "";
     renderizarProductos(buscado);
     console.log(buscado);
@@ -178,22 +179,41 @@ const agregarACarrito = producto => {
   
   /* Ordenar Productos */
   const ordenarProductos =  async orden => {
+    try{
     let result = await fetch ("../conjuntos/conjuntos.json")
     let prods = await result.json();
     switch (orden) {
-      case "recientemente":
+      case "reciente":
         prods.sort((a, b) => b.id - a.id);
         break;
-      case "mayor":
+      case "mayorMenor":
         prods.sort((a, b) => b.precio - a.precio);
         break;
-      case "menor":
+      case "menorMayor":
         prods.sort((a, b) => a.precio - b.precio);
         break;
     }
     productos.innerHTML = "";
     renderizarProductos();
+  } catch (error) {
+    console.log(error);
   }
+}
+  
+/*     switch (orden) {
+      case "reciente":
+        prods.sort((a, b) => b.id - a.id);
+        break;
+      case "mayorMenor":
+        prods.sort((a, b) => b.precio - a.precio);
+        break;
+      case "menorMayor":
+        prods.sort((a, b) => a.precio - b.precio);
+        break;
+    }
+    productos.innerHTML = "";
+    renderizarProductos();
+  } */
   
   /* Sumar Item Carrito*/
   const sumarItemCarrito = (producto) => {
@@ -232,14 +252,6 @@ const agregarACarrito = producto => {
       showConfirmButton: false,
       timer: 1500
     })
-/*     Swal.fire({
-        title: 'Sweet!',
-        text: 'Modal with a custom image.',
-        imageUrl: '${item.imagen}',
-        imageWidth: 400,
-        imageHeight: 200,
-        imageAlt: 'Custom image',
-      }) */
   }
 
   /* Acceso al localStorage */
@@ -273,4 +285,4 @@ formBuscador.addEventListener("keypress", (e) => {
 });
 
 /* Ordenador */
-filtro?.addEventListener("change",() => ordenarProductos(conjuntos,filtro.value));
+ordenador?.addEventListener("change",() => ordenarProductos(conjuntos,ordenador.value));
