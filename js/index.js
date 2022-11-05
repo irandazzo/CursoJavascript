@@ -10,7 +10,7 @@ const pagar = document.getElementById("botonPagar")
 
 /* Renderizar Productos */
 const renderizarProductos = async () =>{
-  let results = await fetch("../conjuntos/conjuntos.json");
+  let results = await fetch("./conjuntos/conjuntos.json");
   let conjuntos = await results.json();
 
 
