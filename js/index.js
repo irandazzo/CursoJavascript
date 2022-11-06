@@ -3,51 +3,118 @@ const botonCarrito = document.getElementById("botonCarrito");
 const numeroCarrito = document.getElementById("numeroCarrito");
 const contenidoCarrito = document.getElementById("contenidoCarrito");
 const botonVaciarCarrito = document.getElementById("botonVaciarCarrito");
-/* const formBuscador = document.getElementById("formBuscador"); */
-/* const botonBuscador = document.getElementById("botonBuscador"); */
 const ordenador = document.getElementById("ordenador");
 const pagar = document.getElementById("botonPagar")
+const searchBar = document.querySelector(".search");
+const cards = document.querySelector(".cards");
 
-/* Renderizar Productos */
-const renderizarProductos = async () =>{
-  let results = await fetch("./conjuntos/conjuntos.json");
-  let conjuntos = await results.json();
+      const renderizarProductos = async (productosFiltrados) => {
+        if (!productosFiltrados) {
+          try {
+            let response = await fetch("./conjuntos/conjuntos.json");
+            let data = await response.json();
+            data.forEach(({
+              id,
+              modelo,
+              precio,
+              imagen,
+              rating
+            }) => {
+              let div = document.createElement("div");
+              div.classList="mx-auto"
+              div.innerHTML = `
+              <div class="card text-center m-3" style="width: 18rem;">
+              <img src="${imagen}">
+              <h5 class="card-title">${modelo}</h5>
+              <h5 class="card-title">${rating}</h5>
+              <h5 class="card-precio">$${precio}</h5>
+              <button type="button" id=${id} class="btn btn btn-primary btn-agregarCarrito">Agregar al Carrito</button>
+              `;
+              div.className = "card";
+              cards.append(div);
 
+              const boton = document.getElementById(id);
+              boton.addEventListener("click", (e) => {
+                botonAgregarACarrito({//
+                  id,
+                  modelo,
+                  precio,
+                  imagen,
+                });
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Agregado al Carrito',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              });
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          productosFiltrados.forEach(({
+            id,
+            modelo,
+            precio,
+            imagen
+          }) => {
+            let div = document.createElement("div");
+            div.classList = "mx-auto"
+            div.innerHTML = `
+            <div class="card text-center m-3" style="width: 18rem;">
+            <img src="${imagen}">
+            <h5 class="card-title">${modelo}</h3>
+            <h5 class="card-precio">$${precio}</p>
+            <button id=${id} class="btn btn btn-primary btn-agregarCarrito">Agregar al Carrito</button>
+            `;
+            div.className = "card";
+            cards.append(div);
+      
+            const boton = document.getElementById(id);
+            boton.addEventListener("click", (e) => {
+              botonAgregarACarrito({
+                id,
+                modelo,
+                precio,
+                imagen
+              });
+              
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Agregado al Carrito',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            });
+          });
+        }
+      };
+      
+      /* Buscador */
+      const buscador = async () => {
+        try {
+          let response = await fetch("./conjuntos/conjuntos.json");
+          let data = await response.json();
+          searchBar.addEventListener("keyup", (e) => {
+            let filteredProductos = data.filter((product) => {
+              return product.modelo.toLowerCase().match(e.target.value.toLowerCase());
+            });
+            cards.innerHTML = "";
+            
+            renderizarProductos(filteredProductos);
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      
+      buscador();
 
-  /* Filtro */
-  switch (ordenador?.value) {
-    case "reciente":
-    conjuntos.sort((a, b) => b.id - a.id);
-    break;
-    case "mayorMenor":
-    conjuntos.sort((a, b) => b.precio - a.precio);
-    break;
-    case "menorMayor":
-    conjuntos.sort((a, b) => a.precio - b.precio);
-    break;
-}
-
-conjuntos.forEach(item => {
-  let article = document.createElement("article");
-  article.classList="mx-auto"
-  article.innerHTML = `
-  <div class="card text-center m-3" style="width: 18rem;">
-    <img src="${item.imagen}" class="imgConjuntos mt-3 mx-auto" alt="${item.modelo}">
-    <div class="card-body">
-        <h5 class="card-title">${item.modelo}</h5>
-        <h5 class="card-title">${item.rating}</h5>
-        <h5 class="card-precio">$${item.precio}</h5>
-        <button type="button" id="${"btnAgregarCarrito" + item.id}" class="btn btn-primary btn-agregarCarrito">Agregar al carrito</button>
-    </div>
-  </div>
-  `
-  productos?.append(article);
-  let botonAgregarACarrito = document.getElementById("btnAgregarCarrito" + item.id);
-  botonAgregarACarrito?.addEventListener("click", () => agregarACarrito(item));
-})
-}
     /* Agregar al carrito */
-const agregarACarrito = producto => {
+const botonAgregarACarrito = producto => {
     let productoExiste = carritoStorage.find(item => item.id === producto.id);
     if (!productoExiste) {
     carritoStorage.push({
@@ -165,32 +232,20 @@ const agregarACarrito = producto => {
       }
     })
   }
-  
-  /* Buscar Productos */
-  const buscarProductos = (prod) => {
-    if(window.location.pathname === "/index.html"){
-      window.location.href= "../conjuntos/conjuntos.json";
-    }
-    let buscado = conjuntos.filter(conj => (`${conj.modelo}`).toLowerCase().includes(prod));
-    productos.innerHTML= "";
-    renderizarProductos(buscado);
-    console.log(buscado);
-  }
-  
   /* Ordenar Productos */
   const ordenarProductos =  async orden => {
     try{
-    let result = await fetch ("../conjuntos/conjuntos.json")
-    let prods = await result.json();
+    let result = await fetch ("./conjuntos/conjuntos.json")
+    let data = await result.json();
     switch (orden) {
       case "reciente":
-        prods.sort((a, b) => b.id - a.id);
+        data.sort((a, b) => b.id - a.id);
         break;
       case "mayorMenor":
-        prods.sort((a, b) => b.precio - a.precio);
+        data.sort((a, b) => b.precio - a.precio);
         break;
       case "menorMayor":
-        prods.sort((a, b) => a.precio - b.precio);
+        data.sort((a, b) => a.precio - b.precio);
         break;
     }
     productos.innerHTML = "";
@@ -199,22 +254,6 @@ const agregarACarrito = producto => {
     console.log(error);
   }
 }
-  
-/*     switch (orden) {
-      case "reciente":
-        prods.sort((a, b) => b.id - a.id);
-        break;
-      case "mayorMenor":
-        prods.sort((a, b) => b.precio - a.precio);
-        break;
-      case "menorMayor":
-        prods.sort((a, b) => a.precio - b.precio);
-        break;
-    }
-    productos.innerHTML = "";
-    renderizarProductos();
-  } */
-  
   /* Sumar Item Carrito*/
   const sumarItemCarrito = (producto) => {
     producto.cantidad ++;
@@ -274,15 +313,5 @@ renderizarProductos();
 /* Evento vaciar carrito */
 botonVaciarCarrito.addEventListener("click", vaciarCarrito);
 
-/* Buscador */
-botonBuscador.addEventListener("click", () => buscarProductos(formBuscador.value.toLowerCase()));
-
-formBuscador.addEventListener("keypress", (e) => {
-  if (e.code === "Enter") {
-    e.preventDefault();
-    buscarProductos(formBuscador.value.toLowerCase());
-  }
-});
-
 /* Ordenador */
-ordenador?.addEventListener("change",() => ordenarProductos(conjuntos,ordenador.value));
+ordenador?.addEventListener("change",() => renderizarProductos());

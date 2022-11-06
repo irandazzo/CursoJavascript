@@ -37,7 +37,11 @@ header{
     width: 25%;
     margin: 20px;
 }
-
+.cards{
+    display: flex;
+    justify-content: space-around;
+    margin: 15px;
+}
 .card-precio{
     color: #006f48;
 }
@@ -292,4 +296,12 @@ header{
 
 .clear {
     clear: both;
+}
+
+@media screen and (max-width: 480px){
+    .bannerProductos img{
+        width: 400px;
+    }
+
+    
 }
