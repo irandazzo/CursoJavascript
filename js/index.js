@@ -168,7 +168,7 @@ const botonAgregarACarrito = producto => {
             </div>
           </div>
           <div class="col-md-1">
-            <button id="${"btnQuitar" + item.id}" class="mt-3 btn btn-warning p-1 rounded-5"><i class="fa fa-trash"></i></button>
+            <button id="${"btnQuitar" + item.id}" class="mt-3 btn btn-warning p-1 rounded-5 btnTrash"><i class="fa fa-trash"></i></button>
           </div>
         </div>
       </div>
